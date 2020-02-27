@@ -8,10 +8,37 @@ class Game extends Component {
     this.state = {
       playerOne: "rock",
       playerTwo: "scissors",
-      playerThree: "paper"
+
     }
   }
 
+// this is where our methods are going to live
+
+playGame = () => {
+  this.setState({
+    playerOne: this.signs[Math.floor(Math.random() * 3)],
+    playerTwo: this.signs[Math.floor(Math.random() * 3)],
+  })
+}
+
+decideWinner = () => {
+  const playerOne = this.state.playerOne
+  const playerTwo = this.state.playerTwo
+
+
+    if (playerOne === playerTwo) {
+      return "It's a Tie!"
+    }
+    else if ((playerOne === "rock" && playerTwo === "scissors") ||
+            (playerOne === "paper" && playerTwo === "rock") ||
+            (playerOne === "scissors" && playerTwo === "paper")){
+              return "Player One Wins!"
+            }
+            else {
+              return "Player Two Wins!"
+            }
+
+}
 
 
   render () {
@@ -22,11 +49,8 @@ class Game extends Component {
           <PlayerCard sign={this.state.playerTwo} />
 
         </div>
-        <div className="winner">Here is the winner</div>
-        <button class="play" type="button" onClick="">Play Game</button>
-
-
-
+        <div className="winner">{this.decideWinner()}</div>
+        <button class="play" type="button" onClick={this.playGame}>Play Game</button>
       </div>
     )
 
