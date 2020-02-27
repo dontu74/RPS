@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import PlayerCard from './PlayerCard';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Game extends Component {
+  constructor () {
+    super();
+    this.signs = ["rock", "scissors", "paper"]
+    this.state = {
+      playerOne: "rock",
+      playerTwo: "scissors",
+      playerThree: "paper"
+    }
+  }
+
+
+
+  render () {
+    return (
+      <div className="style">
+        <div>
+          <PlayerCard sign={this.state.playerOne} />
+          <PlayerCard sign={this.state.playerTwo} />
+
+        </div>
+        <div className="winner">Here is the winner</div>
+        <button class="play" type="button" onClick="">Play Game</button>
+
+
+
+      </div>
+    )
+
+  }
 }
-
-export default App;
+export default Game; // Must use export
